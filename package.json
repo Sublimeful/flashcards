@@ -1,0 +1,15 @@
+{
+  "name": "karta",
+  "version": "1.0.0",
+  "main": "app/electron/main.js",
+  "scripts": {
+    "prod": "electron .",
+    "test": "mocha"
+  },
+  "author": "<Qiangwu2000@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^18.2.3",
+    "mocha": "^10.0.0"
+  }
+}
