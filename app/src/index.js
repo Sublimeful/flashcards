@@ -38,3 +38,4 @@ async function load_flashcards() {
 }
 
 load_welcome()
+

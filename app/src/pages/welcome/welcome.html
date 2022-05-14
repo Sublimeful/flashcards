@@ -1,7 +1,7 @@
 <div class="page">
   <div class="topnav">
     <img src="res/logo.png" alt=""></img>
-    Welcome
+    <h1>Welcome</h1>
   </div>
   <div class="content">
     <div class="create-flashcard">
@@ -20,9 +20,36 @@
     </div>
     <div class="flashcarding">
       <div class="container">
+        <div class="topnav">
+          <h1>Recent</h1>
+        </div>
+        <div class="flashcards">
+          <div id="flashcard-display" class="display">
+            <div class="flashcard">
+              <p>
+                How can I find crackheads?
+              </p>
+              <p>
+                a) Go to the alley
+              </p>
+              <p>
+                b) You are the crackhead
+              </p>
+            </div>
+          </div>
+          <div class="progress-container">
+            <div class="outer progress">
+              <div class="inner progress">
+              </div>
+            </div>
+            <h1 class="progress-text">18/30</h1>
+          </div>
+          <button class="button">
+            Next Card
+          </button>
+        </div>
       </div>
     </div>
-    
   </div>
 </div>
 <script src="pages/welcome/welcome.js"></script>
@@ -44,7 +71,7 @@
 
 .create-flashcard .container {
   cursor: pointer;
-
+  filter: drop-shadow(5px 5px 5px #808080);
 }
 
 .create-flashcard h1 {
@@ -80,7 +107,9 @@
 }
 
 .my-library .container {
+  cursor: pointer;
   flex-direction: column;
+  filter: drop-shadow(5px 5px 5px #808080);
 }
 
 .my-library h1 {
@@ -94,6 +123,92 @@
 }
 
 .flashcarding .container {
+  overflow: hidden;
+  display: block;
+  background-color: white;
+  filter: drop-shadow(0px 0px 8px #808080);
+}
+
+.flashcarding .container .topnav {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flashcards {
+  height: 80%;
+  display: grid;
+  grid-template-areas:
+    "display"
+    "progress"
+    "flashcard-btn";
+  grid-template-rows: 3fr 1fr 1fr;
+  justify-items: center;
+  background-color: #F5F5F5;
+}
+
+.flashcards .display {
+  grid-area: display;
+  height: 100%;
+  width: 80%;
+  padding-top: 3%;
+}
+
+.flashcards .progress-container {
+  height: 100%;
+  width: 70%;
+  align-self: center;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.flashcards .progress-container .outer {
+  margin: 0 !important;
+  background-color: #DCDCDC;
+  height: 40%;
+  width: 100%;
+}
+
+.flashcards .progress-container .inner {
+  background-color: #7662C5;
+  width: 50%;
+  height: 100%;
+}
+
+.flashcards .progress-text {
+  margin: 0 !important;
+  color: #787878;
+  font-size: 1rem;
+  padding-left: 2%;
+}
+
+.flashcards .button {
+  grid-area: flashcard-btn;
+  background-color: #7662C5;
+  color: white;
+  font-weight: 550;
+  width: 40%;
+  height: 60%;
+  filter: drop-shadow(0px 5px 3px #808080);
+  border-radius: 10px;
+}
+
+.flashcard {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  filter: drop-shadow(0px 0px 3px #808080);
+  padding: 3% 4%;
+}
+
+.flashcard * {
+  color: black;
 }
 
 </style>
