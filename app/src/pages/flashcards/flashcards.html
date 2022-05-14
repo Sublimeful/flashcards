@@ -1,15 +1,199 @@
 <div class="page">
   <div class="topnav">
     <img src="res/logo.png" alt=""></img>
-    <h1>Flashcards</h1>
+    Create
+  </div>
+  <div class="top">
+    <input type = "text" placeholder = "Enter a title">
+    <h2>OR</h2>
+    <div class="create-flashcard">
+      <div id="create-flashcard-btn" class="container">
+        <div class="btn-cosmetic">
+          <i class="fa-solid fa-plus"></i>
+        </div>
+        <h1>Import</h1>
+      </div>
+    </div>
   </div>
   <div class="content">
-
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <div class="card-top">
+            <h3>Card 1</h3>
+          </div>
+          <input type = "text" placeholder = "Term">
+          <input type = "text" placeholder = "Definition">
+        </div>
+      </div>
+      <div class="column">
+        <button class="add-card">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+    </div>
+    <button class="create">
+      <span>Create</span>
+    </button>
   </div>
 </div>
+
 <style>
-.content {
-  height: calc(100vh - 12%);
-  display: grid;
-}
+  .create {
+    display: flex;
+    margin-left: 44%;
+    margin-top: 5%;
+    background-color: #5090CB;
+    border: 0;
+    border-radius: 10px;
+    width: 15%;
+    height: 10%;
+    cursor: pointer;
+  }
+
+  .create span {
+    color: white;
+    display: flex;
+    margin: 0 auto;
+    padding-top: 8%;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .add-card {
+    margin: 0 3% 0 0%;
+    width: 4rem;
+    height: 4rem;
+    background-color: #65C6DC;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    border: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-top: 30%;
+    margin-left: 98%;
+  }
+
+  .add-card i {
+    transform: scale(250%)
+  }
+
+  .column {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+    height: 100%;
+  }
+
+  .row {
+    height: 50%;
+    margin-top: 3%;
+  }
+
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    background-color: #f1f1f1;
+    margin-left: 18%;
+    height: 90%;
+    border-radius: 5%;
+  }
+
+  .card input {
+    border: 0;
+    outline: 0;
+    border-bottom: 3px solid lightgrey;
+    color: grey;
+    margin-top: 15%;
+    width: 80%;
+    background-color: #f1f1f1;
+  }
+
+  .card-top h3 {
+    color: white;
+    padding-top: 5%;
+    padding-right: 50%;
+    font-size: 2vw;
+  }
+
+  .card-top:after {
+    content: "";
+    display: block;
+    margin-left: 10%;
+    width: 50%; 
+    border-bottom: 5px solid white;
+    border-radius: 10px;
+  }
+
+  .card-top {
+    border-radius: 10px;
+    background-color: #7662C5;
+    height: 30%;
+  }
+
+  .content {
+    height: 85%;
+  }
+
+  .create-flashcard {
+    margin-left: 25%;
+    width: 15%;
+    margin-top: 2%;
+    height: 70%;
+  }
+
+  .create-flashcard .container {
+    cursor: pointer;
+    filter: drop-shadow(5px 5px 5px #808080);
+  }
+
+  .create-flashcard h1 {
+    color: white;
+    font-size: 100%;
+    margin: 0 !important;
+  }
+
+  .create-flashcard .btn-cosmetic {
+    margin: 0 3% 0 0%;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #65DC71;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+
+  .create-flashcard .btn-cosmetic i {
+    transform: scale(150%)
+  }
+
+  .top {
+    display: flex;
+    height: 15%;
+  }
+
+  .top input {
+    width: 25%;
+    height: 50%;
+    margin-left: 5%;
+    margin-top: 3%;
+    border: 0;
+    outline: 0;
+    border-bottom: 3px solid lightgrey;
+    color: grey;
+    font-size: 150%;
+  }
+
+  .top h2 {
+    margin-left: 20%;
+    margin-top: 4%;
+    color: grey;
+    font-size: 150%;
+  }
+
 </style>
