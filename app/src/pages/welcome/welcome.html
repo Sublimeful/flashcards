@@ -5,10 +5,10 @@
   </div>
   <div class="content">
     <div class="create-flashcard">
-      <div class="container">
-        <button id="create_flashcard_btn" class="button is-rounded is-success">
+      <div id="create-flashcard-btn" class="container">
+        <div class = "btn-cosmetic">
           <i class="fa-solid fa-plus"></i>
-        </button>
+        </div>
         <h1>Create Flashcards</h1>
       </div>
     </div>
@@ -42,18 +42,30 @@
   padding: 10% 10% 10% 10%;
 }
 
+.create-flashcard .container {
+  cursor: pointer;
+
+}
+
 .create-flashcard h1 {
   color: white;
   font-size: 100%;
+  margin: 0 !important;
 }
 
-.create-flashcard button {
-  margin: 0 5% 0 5%;
+.create-flashcard .btn-cosmetic {
+  margin: 0 3% 0 0%;
   width: 2.5rem;
   height: 2.5rem;
+  background-color: #65DC71;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 
-.create-flashcard button i {
+.create-flashcard .btn-cosmetic i {
   transform: scale(150%)
 }
 
@@ -73,6 +85,7 @@
 
 .my-library h1 {
   color: white;
+  font-size: 130%;
 }
 
 .flashcarding {
