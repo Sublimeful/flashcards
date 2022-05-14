@@ -32,3 +32,5 @@ app.on('window-all-closed', () => {
 try {
   require('electron-reloader')(module);
 } catch {}
+
+// New change
