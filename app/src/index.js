@@ -5,6 +5,7 @@ let window_el = document.querySelector("#window")
 let pages = path.resolve(path.join(__dirname, "pages"))
 let welcome_page = path.resolve(path.join(pages, "welcome"))
 let flashcards_page = path.resolve(path.join(pages, "flashcards"))
+let library_page = path.resolve(path.join(pages, "library"))
 
 function executeScriptElements(containerElement) {
   const scriptElements = containerElement.querySelectorAll("script");
@@ -35,6 +36,10 @@ async function load_welcome() {
 
 async function load_flashcards() {
   await load_page(path.resolve(path.join(flashcards_page, "flashcards.html")))
+}
+
+async function load_library() {
+  await load_page(path.resolve(path.join(library_page, "library.html")))
 }
 
 load_welcome()
