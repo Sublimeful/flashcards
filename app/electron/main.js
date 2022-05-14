@@ -6,11 +6,13 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true,
+      contextIsolation: false
     }
   })
 
-  win.loadFile('index.html')
+  win.loadFile(path.join(__dirname, "..", "src", "index.html"))
 }
 
 app.whenReady().then(() => {
@@ -24,3 +26,7 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
+
+try {
+  require('electron-reloader')(module);
+} catch {}

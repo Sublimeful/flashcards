@@ -1,0 +1,111 @@
+<div class="page">
+  <div class="topnav">
+    <img src="res/logo.png" alt=""></img>
+  </div>
+  <div class="content">
+    <div class="create-flashcard">
+      <div class="container">
+        <button class="button is-rounded is-success">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <h1>Create Flashcards</h1>
+      </div>
+    </div>
+    <div class="my-library">
+      <div class="container">
+        <h1>My Library</h1>
+        <img src="res/books.png" alt=""></img>
+      </div>
+    </div>
+    <div class="flashcarding">
+      <div class="container">
+      </div>
+    </div>
+    
+  </div>
+</div>
+<style>
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
+
+.topnav img {
+  width: auto;
+  height: 80%;
+}
+
+.topnav {
+  width: 100vw;
+  display: flex;
+  height: 12%;
+  background-color: #7662C5;
+  display: flex;
+  align-items: center
+}
+
+.content {
+  height: calc(100vh - 12%);
+  display: grid;
+  grid-template-areas:
+    "create-flashcard flashcarding"
+    "my-library       flashcarding";
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 3fr;
+}
+
+.create-flashcard {
+  grid-area: create-flashcard;
+  padding: 10% 10% 10% 10%;
+}
+
+.create-flashcard h1 {
+  color: white;
+  font-size: 100%;
+}
+
+.create-flashcard button {
+  margin: 0 5% 0 5%;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.create-flashcard button i {
+  transform: scale(150%)
+}
+
+.container {
+  border-radius: 5%;
+  background-color: #9C8CDC;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.my-library {
+  padding: 10% 10% 10% 10%;
+  grid-area: my-library;
+}
+
+.my-library img {
+  width: 80%;
+  height: auto;
+}
+
+.my-library .container {
+  flex-direction: column;
+}
+
+.my-library h1 {
+  color: white;
+}
+
+.flashcarding {
+  padding: 2% 6%;
+  grid-area: flashcarding;
+}
+
+.flashcarding .container {
+}
+
+</style>
