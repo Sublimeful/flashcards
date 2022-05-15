@@ -6,7 +6,7 @@
   const title_input = document.getElementById("title-input");
   const term_input = document.getElementById("term-input");
   const definition_input = document.getElementById("definition-input");
-  const back_btn = document.querySelector(".topnav img")
+  const back_btn = document.querySelector(".topnav img");
   let card_entries = [];
 
   import_flashcards_btn.onclick = import_flashcards;
