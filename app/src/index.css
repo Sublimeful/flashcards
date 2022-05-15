@@ -33,7 +33,7 @@ body {
   width: 100%;
   position: absolute;
   text-align: center;
-  font-size: 2rem;
+  font-size: calc(min(2rem, 3vh) + 75%);
 }
 
 .topnav img {

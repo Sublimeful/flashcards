@@ -38,11 +38,16 @@
     background-color: #BFB5FF;
     border-radius: 50px;
     margin-left: 5%;
-    font-size: 110%;
+    font-size: min(2rem, 3vh);
+    color: white;
   }
 
   .search-bar input:focus {
     outline: none;
+  }
+
+  .search-bar input::placeholder {
+    color: white;
   }
 
   .search-bar img {
@@ -76,11 +81,16 @@
     text-align: left;
     padding-top: 5%;
     padding-left: 5%;
-    font-size: 1.5vw;
+    font-size: 2vw;
   }
 
   .card h2 {
     font-weight: bold;
+  }
+
+  .card h1 {
+    font-size: min(2rem, 3vh);
+    margin: 3%;
   }
 
 </style>
