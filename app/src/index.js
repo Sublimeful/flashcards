@@ -1,3 +1,5 @@
+const { ipcRenderer } = require("electron");
+
 const path = require("path")
 const fs = require("fs").promises;
 
@@ -6,6 +8,8 @@ let pages = path.resolve(path.join(__dirname, "pages"))
 let welcome_page = path.resolve(path.join(pages, "welcome"))
 let flashcards_page = path.resolve(path.join(pages, "flashcards"))
 let library_page = path.resolve(path.join(pages, "library"))
+let flashcards = {
+}
 
 function executeScriptElements(containerElement) {
   const scriptElements = containerElement.querySelectorAll("script");
