@@ -10,6 +10,7 @@
 
   let card_entries = [];
   let edit_mode = false;
+  let event_emitter = document.createElement("div")
 
   if(to_edit != null) {
     const title_input = document.getElementById("title-input");
@@ -39,7 +40,10 @@
   import_flashcards_btn.onclick = import_flashcards;
   create_card_btn.onclick = create_flashcard;
   create_btn.onclick = create_study_set;
-  back_btn.onclick = load_welcome;
+  back_btn.onclick = () => {
+    event_emitter.removeAllListeners()
+    load_welcome();
+  }
 
   function export_flashcards(fcs, category, path) {
     fs.appendFileSync(path, category)
@@ -210,7 +214,7 @@
     ipcRenderer.invoke("import_flashcards", home_directory);
   }
 
-  ipcRenderer.on("import_flashcards", (event, data) => {
+  event_emitter = ipcRenderer.on("import_flashcards", (event, data) => {
     const canceled = data.canceled;
     const path = data.filePaths[0];
 
@@ -226,7 +230,7 @@
     }
   })
 
-  ipcRenderer.on("export_flashcards", (event, data) => {
+  event_emitter = ipcRenderer.on("export_flashcards", (event, data) => {
     const title_input = document.getElementById("title-input");
 
     const canceled = data.canceled;
