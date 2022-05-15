@@ -9,6 +9,8 @@ let pages = path.resolve(path.join(__dirname, "pages"))
 let welcome_page = path.resolve(path.join(pages, "welcome"))
 let flashcards_page = path.resolve(path.join(pages, "flashcards"))
 let library_page = path.resolve(path.join(pages, "library"))
+let flashcards = {
+}
 
 let flashcards = {}
 

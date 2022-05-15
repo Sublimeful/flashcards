@@ -103,7 +103,7 @@ ipcRenderer.on("import_flashcards", (event, data) => {
 
   if(canceled) return;
 
-  // Flashcards importeR
+  // Flashcards imported
   const fcs = parse_flashcards_file(path);
 
   for (const [category, cards] of Object.entries(fcs)) {
@@ -125,5 +125,3 @@ ipcRenderer.on("export_flashcards", (event, data) => {
   let category = title_input.value;
   export_flashcards(card_entries, category, path);
 })
-
-
