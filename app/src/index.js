@@ -28,10 +28,10 @@ let flashcards = {
       "definition": "i ain't telling you"
     }
   ],
-  "Where to find crack dealer": [
+  "Where to find peace": [
     {
-      "term": "school",
-      "definition": "jones college prep"
+      "term": "peace",
+      "definition": "can be found by sleeping"
     }
   ],
 }
