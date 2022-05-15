@@ -12,30 +12,7 @@ let flashcards_page = path.resolve(path.join(pages, "flashcards"))
 let library_page = path.resolve(path.join(pages, "library"))
 let to_edit = null
 
-let flashcards = {
-  "How to win hackathon": [
-    {
-      "term": "step 1",
-      "definition": "be good"
-    },
-    {
-      "term": "step 2",
-      "definition": "repeat step 1"
-    }
-  ],
-  "What is your ip address": [
-    {
-      "term": "it is",
-      "definition": "i ain't telling you"
-    }
-  ],
-  "Where to find peace": [
-    {
-      "term": "peace",
-      "definition": "can be found by sleeping"
-    }
-  ],
-}
+let flashcards = {}
 
 let studyset = null
 

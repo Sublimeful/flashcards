@@ -2,15 +2,18 @@
   "name": "karta",
   "version": "1.0.0",
   "main": "app/electron/main.js",
+  "description": "Flashcards app",
   "scripts": {
     "prod": "electron .",
     "test": "mocha",
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder"
   },
   "author": "<Qiangwu2000@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "electron": "^18.2.3",
+  "devDependencies": {
+    "electron": "^18.0.4",
+    "electron-builder": "^23.0.3",
     "electron-reloader": "^1.2.3",
     "mocha": "^10.0.0"
   }
