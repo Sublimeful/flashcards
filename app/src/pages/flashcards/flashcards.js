@@ -106,10 +106,21 @@
     // Flashcards importeR
     const fcs = parse_flashcards_file(path);
 
+<<<<<<< HEAD
     for (const [category, cards] of Object.entries(fcs)) {
       for(let card of cards) {
         add_flashcard(card, category);
       }
+=======
+  if(canceled) return;
+
+  // Flashcards imported
+  const fcs = parse_flashcards_file(path);
+
+  for (const [category, cards] of Object.entries(fcs)) {
+    for(let card of cards) {
+      add_flashcard(card, category);
+>>>>>>> 8fc30ae795b1103f7de44925a9719f345ab54efc
     }
   })
 
@@ -117,6 +128,7 @@
     const canceled = data.canceled;
     const path = data.filePath;
 
+<<<<<<< HEAD
     if(canceled) return;
 
     // Clear or make file
@@ -126,3 +138,13 @@
     export_flashcards(card_entries, category, path);
   })
 })();
+=======
+  if(canceled) return;
+
+  // Clear or make file
+  fs.writeFileSync(path, '');
+
+  let category = title_input.value;
+  export_flashcards(card_entries, category, path);
+})
+>>>>>>> 8fc30ae795b1103f7de44925a9719f345ab54efc

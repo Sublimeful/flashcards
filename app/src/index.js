@@ -9,6 +9,8 @@ let pages = path.resolve(path.join(__dirname, "pages"))
 let welcome_page = path.resolve(path.join(pages, "welcome"))
 let flashcards_page = path.resolve(path.join(pages, "flashcards"))
 let library_page = path.resolve(path.join(pages, "library"))
+let flashcards = {
+}
 
 let welcome_page_loaded = false;
 let flashcards_page_loaded = false;
@@ -64,7 +66,7 @@ function load_library() {
   if(!fs.existsSync(appdata)) fs.mkdirSync(appdata)
   if(!fs.existsSync(flashcards_loc)) fs.writeFileSync(flashcards_loc, "")
 
-  //load_welcome()
-  load_flashcards()
+  load_welcome()
+  //load_flashcards()
 })();
 
