@@ -36,6 +36,10 @@ let flashcards = {
   ],
 }
 
+let studyset = null
+
+
+
 function executeScriptElements(containerElement) {
   const scriptElements = containerElement.querySelectorAll("script");
 

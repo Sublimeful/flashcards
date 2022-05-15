@@ -7,14 +7,20 @@
 	search_input.onkeyup = get_search_input;
 
 	for (const [category, cards] of Object.entries(flashcards)) {
-		cards_div.innerHTML += `
-			<button class="card">
-		      <h2>${category}</h2>
-		      <p>${cards.length} cards</p>
-		    </button>
-		`
-		console.log(category);
-		console.log(cards.length)
+    let cards_btn = document.createElement("button")
+    cards_btn.classList.add("card")
+
+    let category_h1 = document.createElement("h1")
+    category_h1.textContent = category
+    
+    let cards_number = document.createElement("p")
+    cards_number.textContent = cards.length
+    
+    cards_btn.appendChild(category_h1)
+    cards_btn.appendChild(cards_number)
+    cards_div.appendChild(cards_btn)
+
+    cards_btn.onclick = () => start_studyset(category)
 	}
 
 	function get_search_input() {
@@ -28,4 +34,9 @@
 			}
 		}
 	}
+
+  function start_studyset(category) {
+    studyset = flashcards[category]
+    load_welcome()
+  }
 })();
