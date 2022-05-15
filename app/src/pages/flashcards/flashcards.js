@@ -41,6 +41,10 @@
     term_input.value = "";
     definition_input.value = "";
     card_number_el.textContent = "Card " + (card_entries.length + 1);
+
+    for (let card of card_entries) {
+      add_flashcard(card, title_input.value);
+    }
   }
 
   function create_study_set() {

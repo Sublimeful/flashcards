@@ -11,7 +11,30 @@ let welcome_page = path.resolve(path.join(pages, "welcome"))
 let flashcards_page = path.resolve(path.join(pages, "flashcards"))
 let library_page = path.resolve(path.join(pages, "library"))
 
-let flashcards = {}
+let flashcards = {
+  "How to win hackathon": [
+    {
+      "term": "step 1",
+      "definition": "be good"
+    },
+    {
+      "term": "step 2",
+      "definition": "repeat step 1"
+    }
+  ],
+  "What is your ip address": [
+    {
+      "term": "it is",
+      "definition": "i ain't telling you"
+    }
+  ],
+  "Where to find crack dealer": [
+    {
+      "term": "school",
+      "definition": "jones college prep"
+    }
+  ],
+}
 
 function executeScriptElements(containerElement) {
   const scriptElements = containerElement.querySelectorAll("script");
