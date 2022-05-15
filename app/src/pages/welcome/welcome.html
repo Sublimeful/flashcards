@@ -25,16 +25,20 @@
         </div>
         <div class="flashcards">
           <div id="flashcard-display" class="display">
-            <div id="flashcard" class="flashcard">
+            <div id="flashcard-front" class="front">
               <p>
-                How can I find crackheads?
+                How can I find peace?
               </p>
               <p>
-                a) Go to the alley
+                a) Lay down
               </p>
               <p>
-                b) You are the crackhead
+                b) Go to sleep
               </p>
+            </div>
+
+            <div id="flashcard-back" class="back">
+              <p>Hello!</p>
             </div>
           </div>
           <div class="progress-container">
@@ -76,7 +80,7 @@
 
 .create-flashcard h1 {
   color: white;
-  font-size: min(2rem, 3vh);
+  font-size: 100%;
   margin: 0 !important;
 }
 
@@ -114,7 +118,7 @@
 
 .my-library h1 {
   color: white;
-  font-size: min(2rem, 3vh);
+  font-size: 130%;
 }
 
 .flashcarding {
@@ -148,7 +152,33 @@
     "flashcard-btn";
   grid-template-rows: 3fr 1fr 1fr;
   justify-items: center;
+  perspective: 1000px;
+}
+
+#flashcard-display {
   background-color: #F5F5F5;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flashcards:active .display {
+  transform: rotateY( 180deg );
+  transition: transform 0.6s;
+}
+
+.front, .back {
+  background-color: #F5F5F5;
+  text-align: center;
+  backface-visibility: hidden;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.front p, .back p {
+  color: gray;
 }
 
 .flashcards .display {
@@ -156,7 +186,6 @@
   height: 100%;
   width: 80%;
   padding-top: 3%;
-  font-size: min(2rem, 3vh);
 }
 
 .flashcards .progress-container {
@@ -184,8 +213,8 @@
 .flashcards .progress-text {
   margin: 0 !important;
   color: #787878;
+  font-size: 1rem;
   padding-left: 2%;
-  font-size: min(2rem, 3vh);
 }
 
 .flashcards .button {
@@ -197,7 +226,6 @@
   height: 60%;
   filter: drop-shadow(0px 5px 3px #808080);
   border-radius: 10px;
-  font-size: min(2rem, 3vh);
 }
 
 .flashcard {
