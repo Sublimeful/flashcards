@@ -19,7 +19,7 @@ const createWindow = () => {
 
   ipcMain.handle("import_flashcards", (e, default_path) => {
     dialog.showOpenDialog({
-      title: "Import Cards",
+      title: "Import Flashcards",
       defaultPath: default_path,
       properties: ['openFile'],
       filters: [{
@@ -29,6 +29,17 @@ const createWindow = () => {
     }).then(res => {
       win.webContents.send("import_flashcards", res);
     })
+  })
+
+  ipcMain.handle("export_flashcards", (e, default_path) => {
+    dialog.showSaveDialog({title: "Export Flashcards", defaultPath: default_path, filters: [{ name: 'Flashcards Files', extensions: ['cards'] }]})
+      .then(res => {
+        win.webContents.send("export_flashcards", res);
+      })
+  })
+
+  ipcMain.handle("get_appdata", async e => {
+    return app.getPath("appData")
   })
 }
 
