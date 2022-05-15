@@ -93,6 +93,8 @@
     function edit() {
       if(!edit_mode || term_input.value.trim() === "") return;
 
+      const title_input = document.getElementById("title-input");
+
       let card_list = []
 
       for(let card_el of card_row.querySelectorAll(".card")) {
