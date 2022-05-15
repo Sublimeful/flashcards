@@ -4,7 +4,8 @@
   "main": "app/electron/main.js",
   "scripts": {
     "prod": "electron .",
-    "test": "mocha"
+    "test": "mocha",
+    "start": "electron ."
   },
   "author": "<Qiangwu2000@gmail.com>",
   "license": "MIT",

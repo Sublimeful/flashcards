@@ -1,7 +1,8 @@
 const { ipcRenderer } = require("electron");
+const { app } = require('electron');
 
 const path = require("path")
-const fs = require("fs").promises;
+const fs = require("fs");
 
 let window_el = document.querySelector("#window")
 let pages = path.resolve(path.join(__dirname, "pages"))
@@ -10,6 +11,8 @@ let flashcards_page = path.resolve(path.join(pages, "flashcards"))
 let library_page = path.resolve(path.join(pages, "library"))
 let flashcards = {
 }
+
+let flashcards = {}
 
 function executeScriptElements(containerElement) {
   const scriptElements = containerElement.querySelectorAll("script");
@@ -27,24 +30,33 @@ function executeScriptElements(containerElement) {
   });
 }
 
-async function load_page(page_path) {
-  const html = await fs.readFile(page_path, "utf8")
+function load_page(page_path) {
+  const html = fs.readFileSync(page_path, "utf8")
   window_el.innerHTML = ''
   window_el.insertAdjacentHTML("beforeend", html);
   executeScriptElements(window_el);
 }
 
-async function load_welcome() {
-  await load_page(path.resolve(path.join(welcome_page, "welcome.html")))
+function load_welcome() {
+  load_page(path.resolve(path.join(welcome_page, "welcome.html")))
 }
 
-async function load_flashcards() {
-  await load_page(path.resolve(path.join(flashcards_page, "flashcards.html")))
+function load_flashcards() {
+  load_page(path.resolve(path.join(flashcards_page, "flashcards.html")))
 }
 
-async function load_library() {
-  await load_page(path.resolve(path.join(library_page, "library.html")))
+function load_library() {
+  load_page(path.resolve(path.join(library_page, "library.html")))
 }
 
-load_welcome()
+(async () => {
+  let appdata = path.resolve(path.join((await ipcRenderer.invoke("get_appdata")), "karta"))
+  let flashcards_loc = path.resolve(path.join(appdata, "flashcards.cards"))
+
+  if(!fs.existsSync(appdata)) fs.mkdirSync(appdata)
+  if(!fs.existsSync(flashcards_loc)) fs.writeFileSync(flashcards_loc, "")
+
+  load_welcome()
+  //load_flashcards()
+})();
 
