@@ -4,7 +4,7 @@
     <h1>Create</h1>
   </div>
   <div class="top">
-    <input type = "text" placeholder = "Enter a title">
+    <input type = "text" placeholder = "Enter a title" id="title-input">
     <h2>OR</h2>
     <div id="import-flashcards-btn" class="import-flashcards">
       <div class="container">
@@ -20,19 +20,19 @@
       <div class="column">
         <div class="card">
           <div class="card-top">
-            <h3>Card 1</h3>
+            <h3 id="card-num">Card 1</h3>
           </div>
-          <input type = "text" placeholder = "Term">
-          <input type = "text" placeholder = "Definition">
+          <input type = "text" placeholder = "Term" id="term-input">
+          <input type = "text" placeholder = "Definition" id="definition-input">
         </div>
       </div>
       <div class="column">
-        <button class="add-card">
+        <button class="add-card" id="add-card-btn">
           <i class="fa-solid fa-plus"></i>
         </button>
       </div>
     </div>
-    <button class="create">
+    <button class="create" id="create-btn">
       <span>Create</span>
     </button>
   </div>

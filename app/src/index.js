@@ -46,5 +46,6 @@ async function load_library() {
   await load_page(path.resolve(path.join(library_page, "library.html")))
 }
 
-load_welcome()
+//load_welcome()
+load_flashcards()
 

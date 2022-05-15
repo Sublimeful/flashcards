@@ -1,8 +1,38 @@
 const home_directory = require("os").homedir();
 const import_flashcards_btn = document.getElementById("import-flashcards-btn");
+const create_btn = document.getElementById("create-btn");
+const add_card_btn = document.getElementById("add-card-btn");
+let card_num = document.getElementById("card-num");
+let title_input = document.getElementById("title-input");
+let term_input = document.getElementById("term-input");
+let definition_input = document.getElementById("definition-input");
+let card_entries = [];
+
+
 console.log(import_flashcards_btn)
 
 import_flashcards_btn.onclick = import_flashcards;
+add_card_btn.onlick = add_flashcard;
+create_btn.onlick = create_study_set;
+
+function add_flashcard() {
+  card_entries.push(
+    {
+      "term": term_input.value,
+      "definition": definition_input.value
+    }
+  );
+
+  term_input.value = "";
+  definition_input.value = "";
+  card_num.textContent = "Card " + card_entries.length;
+}
+
+
+function create_study_set() {
+  
+}
+
 
 async function parse_flashcards_file(path_to_flashcards_file) {
   const data = await fs.readFile(path_to_flashcards_file, {encoding: 'utf8', flag: 'r'});
@@ -76,3 +106,5 @@ ipcRenderer.on("import_flashcards", async (event, data) => {
 
   console.log(flashcards)
 })
+
+
