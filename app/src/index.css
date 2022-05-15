@@ -35,6 +35,8 @@ body {
   margin-right: 2%;
   width: auto;
   height: 80%;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .topnav {

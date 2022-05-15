@@ -1,63 +1,88 @@
-const home_directory = require("os").homedir();
-const import_flashcards_btn = document.getElementById("import-flashcards-btn");
-const create_btn = document.getElementById("create-btn");
-const create_card_btn = document.getElementById("create-card-btn");
-const card_number_el = document.getElementById("card-number");
-const title_input = document.getElementById("title-input");
-const term_input = document.getElementById("term-input");
-const definition_input = document.getElementById("definition-input");
+(function() {
+  const import_flashcards_btn = document.getElementById("import-flashcards-btn");
+  const create_btn = document.getElementById("create-btn");
+  const create_card_btn = document.getElementById("create-card-btn");
+  const card_number_el = document.getElementById("card-number");
+  const title_input = document.getElementById("title-input");
+  const term_input = document.getElementById("term-input");
+  const definition_input = document.getElementById("definition-input");
+  const back_btn = document.querySelector(".topnav img")
+  let card_entries = [];
 
-let card_entries = [];
+  import_flashcards_btn.onclick = import_flashcards;
+  create_card_btn.onclick = create_flashcard;
+  create_btn.onclick = create_study_set;
+  back_btn.onclick = load_welcome;
 
-import_flashcards_btn.onclick = import_flashcards;
-create_card_btn.onclick = create_flashcard;
-create_btn.onclick = create_study_set;
-
-function export_flashcards(fcs, category, path) {
-  console.log(fcs)
-  fs.appendFileSync(path, category)
-  for(let card of fcs) {
-    fs.appendFileSync(path, "\n" + card["term"])
-    fs.appendFileSync(path, "\n" + card["definition"])
-  }
-}
-
-function add_flashcard(card, category) {
-  if(!(category in flashcards)) {
-    flashcards[category] = [];
-  }
-
-  flashcards[category].push(card);
-}
-
-function create_flashcard() {
-  card_entries.push(
-    {
-      "term": term_input.value,
-      "definition": definition_input.value
+  function export_flashcards(fcs, category, path) {
+    fs.appendFileSync(path, category)
+    for(let card of fcs) {
+      fs.appendFileSync(path, "\n" + card["term"])
+      fs.appendFileSync(path, "\n" + card["definition"])
     }
-  );
+  }
 
-  term_input.value = "";
-  definition_input.value = "";
-  card_number_el.textContent = "Card " + (card_entries.length + 1);
-}
+  function add_flashcard(card, category) {
+    if(!(category in flashcards)) {
+      flashcards[category] = [];
+    }
 
-function create_study_set() {
-  ipcRenderer.invoke("export_flashcards", home_directory);
-}
+    flashcards[category].push(card);
+  }
 
-function parse_flashcards_file(path_to_flashcards_file) {
-  const data = fs.readFileSync(path_to_flashcards_file, {encoding: 'utf8', flag: 'r'});
+  function create_flashcard() {
+    card_entries.push(
+      {
+        "term": term_input.value,
+        "definition": definition_input.value
+      }
+    );
 
-  let category = null;
-  let fcs = {}
-  let card = {}
+    term_input.value = "";
+    definition_input.value = "";
+    card_number_el.textContent = "Card " + (card_entries.length + 1);
+  }
 
-  for(let line of data.split("\n").map(l => l.trim())) {
-    if(category === null) {
-      category = line;
-      continue;
+  function create_study_set() {
+    ipcRenderer.invoke("export_flashcards", home_directory);
+  }
+
+  function parse_flashcards_file(path_to_flashcards_file) {
+    const data = fs.readFileSync(path_to_flashcards_file, {encoding: 'utf8', flag: 'r'});
+
+    let category = null;
+    let fcs = {}
+    let card = {}
+
+    for(let line of data.split("\n").map(l => l.trim())) {
+      if(category === null) {
+        category = line;
+        continue;
+      }
+
+      if("term" in card && "definition" in card) {
+        fcs[category].push(card)
+        card = {}
+      }
+
+      if(line === "") {
+        category = null;
+        continue;
+      }
+
+      if(!(category in fcs)) {
+        fcs[category] = []
+      }
+
+      if(!("term" in card)) {
+        card["term"] = line;
+        continue;
+      }
+
+      if(!("definition" in card)) {
+        card["definition"] = line;
+        continue;
+      }
     }
 
     if("term" in card && "definition" in card) {
@@ -65,65 +90,39 @@ function parse_flashcards_file(path_to_flashcards_file) {
       card = {}
     }
 
-    if(line === "") {
-      category = null;
-      continue;
-    }
-
-    if(!(category in fcs)) {
-      fcs[category] = []
-    }
-
-    if(!("term" in card)) {
-      card["term"] = line;
-      continue;
-    }
-
-    if(!("definition" in card)) {
-      card["definition"] = line;
-      continue;
-    }
+    return fcs;
   }
 
-  if("term" in card && "definition" in card) {
-    fcs[category].push(card)
-    card = {}
+  function import_flashcards() {
+    ipcRenderer.invoke("import_flashcards", home_directory);
   }
 
-  return fcs;
-}
+  ipcRenderer.on("import_flashcards", (event, data) => {
+    const canceled = data.canceled;
+    const path = data.filePaths[0];
 
-function import_flashcards() {
-  ipcRenderer.invoke("import_flashcards", home_directory);
-}
+    if(canceled) return;
 
-ipcRenderer.on("import_flashcards", (event, data) => {
-  const canceled = data.canceled;
-  const path = data.filePaths[0];
+    // Flashcards importeR
+    const fcs = parse_flashcards_file(path);
 
-  if(canceled) return;
-
-  // Flashcards importeR
-  const fcs = parse_flashcards_file(path);
-
-  for (const [category, cards] of Object.entries(fcs)) {
-    for(let card of cards) {
-      add_flashcard(card, category);
+    for (const [category, cards] of Object.entries(fcs)) {
+      for(let card of cards) {
+        add_flashcard(card, category);
+      }
     }
-  }
-})
+  })
 
-ipcRenderer.on("export_flashcards", (event, data) => {
-  const canceled = data.canceled;
-  const path = data.filePath;
+  ipcRenderer.on("export_flashcards", (event, data) => {
+    const canceled = data.canceled;
+    const path = data.filePath;
 
-  if(canceled) return;
+    if(canceled) return;
 
-  // Clear or make file
-  fs.writeFileSync(path, '');
+    // Clear or make file
+    fs.writeFileSync(path, '');
 
-  let category = title_input.value;
-  export_flashcards(card_entries, category, path);
-})
-
-
+    let category = title_input.value;
+    export_flashcards(card_entries, category, path);
+  })
+})();

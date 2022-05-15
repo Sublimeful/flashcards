@@ -10,6 +10,13 @@ let welcome_page = path.resolve(path.join(pages, "welcome"))
 let flashcards_page = path.resolve(path.join(pages, "flashcards"))
 let library_page = path.resolve(path.join(pages, "library"))
 
+let welcome_page_loaded = false;
+let flashcards_page_loaded = false;
+let library_page_loaded = false;
+
+// flashcards variables
+const home_directory = require("os").homedir();
+
 let flashcards = {}
 
 function executeScriptElements(containerElement) {
@@ -37,14 +44,17 @@ function load_page(page_path) {
 
 function load_welcome() {
   load_page(path.resolve(path.join(welcome_page, "welcome.html")))
+  welcome_page_loaded = true;
 }
 
 function load_flashcards() {
   load_page(path.resolve(path.join(flashcards_page, "flashcards.html")))
+  flashcards_page_loaded = true;
 }
 
 function load_library() {
   load_page(path.resolve(path.join(library_page, "library.html")))
+  library_page_loaded = true;
 }
 
 (async () => {
