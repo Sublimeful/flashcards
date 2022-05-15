@@ -41,7 +41,6 @@
 <style>
   .create {
     display: flex;
-    margin-left: 44%;
     margin-top: 5%;
     background-color: #5090CB;
     border: 0;
@@ -146,13 +145,16 @@
 
   .content {
     height: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   .import-flashcards {
-    margin-left: 25%;
-    width: 15%;
-    margin-top: 2%;
-    height: 70%;
+    width: 40%;
+    height: 50%;
+    justify-self: center;
   }
 
   .import-flashcards .container {
@@ -183,27 +185,29 @@
   }
 
   .top {
-    display: flex;
+    display: grid;
     height: 15%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .top input {
-    width: 25%;
+    width: 60%;
     height: 50%;
-    margin-left: 5%;
-    margin-top: 3%;
     border: 0;
     outline: 0;
     border-bottom: 3px solid lightgrey;
     color: grey;
     font-size: 150%;
+    justify-self: center;
   }
 
   .top h2 {
-    margin-left: 20%;
-    margin-top: 4%;
     color: grey;
     font-size: 150%;
+    justify-self: center;
   }
 
   /* width */

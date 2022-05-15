@@ -8,7 +8,32 @@
   const definition_input = document.getElementById("definition-input");
   const back_btn = document.querySelector(".topnav img");
   const card_row = document.getElementById("card-row")
+
   let card_entries = [];
+  let edit_mode = false;
+
+  if(to_edit != null) {
+    title_input.value = to_edit["category"];
+    card_entries = to_edit["cards"];
+
+    for(let card_index = 0; card_index < card_entries.length; card_index++) {
+      let card = card_entries[card_index]
+      let card_div = card_row.querySelectorAll(".card")[card_index]
+      let term_input = card_div.querySelector(".term-input")
+      let definition_input = card_div.querySelector(".definition-input")
+
+      term_input.value = card["term"]
+      definition_input.value = card["definition"]
+
+      if(card_index === card_entries.length - 1) break;
+
+      create_flashcard()
+    }
+
+    title_input.disabled = true;
+    to_edit = null;
+    edit_mode = true;
+  }
 
   import_flashcards_btn.onclick = import_flashcards;
   create_card_btn.onclick = create_flashcard;
@@ -32,7 +57,6 @@
   }
 
   function create_flashcard() {
-
     let card_column = document.createElement("div")
     card_column.classList.add("column")
     
@@ -64,6 +88,37 @@
 
     card_column.appendChild(card_div)
     card_row.insertBefore(card_column, create_card_btn.parentNode)
+
+    function edit() {
+      if(!edit_mode || term_input.value.trim() === "") return;
+
+      let card_list = []
+
+      for(let card_el of card_row.querySelectorAll(".card")) {
+        let term_input = card_el.querySelector(".term-input")
+        let definition_input = card_el.querySelector(".definition-input")
+
+
+        let term = term_input.value.trim()
+        let definition = definition_input.value.trim()
+
+        if(term === '' || definition === '') continue;
+
+        let card = {
+          "term": term,
+          "definition": definition
+        }
+
+        card_list.push(card)
+      }
+
+      flashcards[title_input.value] = card_list;
+    }
+
+    term_input.oninput = edit;
+    definition_input.oninput = edit;
+
+    return card_div;
   }
 
   function create_study_set() {
