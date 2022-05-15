@@ -54,7 +54,7 @@ function load_library() {
   if(!fs.existsSync(appdata)) fs.mkdirSync(appdata)
   if(!fs.existsSync(flashcards_loc)) fs.writeFileSync(flashcards_loc, "")
 
-  //load_welcome()
-  load_flashcards()
+  load_welcome()
+  //load_flashcards()
 })();
 
