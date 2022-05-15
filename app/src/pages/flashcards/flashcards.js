@@ -7,6 +7,7 @@
   const term_input = document.getElementById("term-input");
   const definition_input = document.getElementById("definition-input");
   const back_btn = document.querySelector(".topnav img");
+  const card_row = document.getElementById("card-row")
   let card_entries = [];
 
   import_flashcards_btn.onclick = import_flashcards;
@@ -31,23 +32,68 @@
   }
 
   function create_flashcard() {
-    card_entries.push(
-      {
-        "term": term_input.value,
-        "definition": definition_input.value
-      }
-    );
 
-    term_input.value = "";
-    definition_input.value = "";
-    card_number_el.textContent = "Card " + (card_entries.length + 1);
+    let card_column = document.createElement("div")
+    card_column.classList.add("column")
+    
+    let card_div = document.createElement("div")
+    card_div.classList.add("card")
 
-    for (let card of card_entries) {
-      add_flashcard(card, title_input.value);
-    }
+    let card_top_div = document.createElement("div")
+    card_top_div.classList.add("card-top")
+
+    let card_number_h3 = document.createElement("h3")
+    card_number_h3.classList.add("card-number")
+    card_number_h3.textContent = `Card ${card_row.querySelectorAll(".card").length + 1}`
+
+    let term_input = document.createElement("input")
+    term_input.type = "text"
+    term_input.placeholder = "Term"
+    term_input.classList.add("term-input")
+
+    let definition_input = document.createElement("input")
+    definition_input.type = "text"
+    definition_input.placeholder = "Definition"
+    definition_input.classList.add("definition-input")
+
+    card_div.appendChild(card_top_div)
+    card_top_div.appendChild(card_number_h3)
+
+    card_div.appendChild(term_input)
+    card_div.appendChild(definition_input)
+
+    card_column.appendChild(card_div)
+    card_row.insertBefore(card_column, create_card_btn.parentNode)
   }
 
   function create_study_set() {
+    let category = title_input.value.trim()
+    if(category === '') {
+      ipcRenderer.invoke("notify", "Please add a title!", "");
+      return;
+    }
+    
+    card_entries = []
+
+    for(let card_el of card_row.querySelectorAll(".card")) {
+      let term_input = card_el.querySelector(".term-input")
+      let definition_input = card_el.querySelector(".definition-input")
+
+
+      let term = term_input.value.trim()
+      let definition = definition_input.value.trim()
+
+      if(term === '' || definition === '') continue;
+
+      let card = {
+        "term": term,
+        "definition": definition
+      }
+
+      card_entries.push(card)
+      add_flashcard(card, category)
+    }
+    
     ipcRenderer.invoke("export_flashcards", home_directory);
   }
 
@@ -123,10 +169,17 @@
 
     if(canceled) return;
 
+    // If title is empty
+    let category = title_input.value.trim();
+    if(category === '') {
+      ipcRenderer.invoke("notify", "Please add a title!", "");
+      return;
+    }
+
     // Clear or make file
     fs.writeFileSync(path, '');
 
-    let category = title_input.value;
+    // Export
     export_flashcards(card_entries, category, path);
   })
 })();

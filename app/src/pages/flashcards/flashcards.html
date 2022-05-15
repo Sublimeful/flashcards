@@ -16,17 +16,17 @@
     </div>
   </div>
   <div class="content">
-    <div class="row">
+    <div id="card-row" class="row">
       <div class="column">
         <div class="card">
           <div class="card-top">
-            <h3 id="card-number">Card 1</h3>
+            <h3 class="card-number">Card 1</h3>
           </div>
-          <input type = "text" placeholder = "Term" id="term-input">
-          <input type = "text" placeholder = "Definition" id="definition-input">
+          <input type = "text" placeholder = "Term" class="term-input">
+          <input type = "text" placeholder = "Definition" class="definition-input">
         </div>
       </div>
-      <div class="column">
+      <div class="column create-card-column">
         <button class="create-card" id="create-card-btn">
           <i class="fa-solid fa-plus"></i>
         </button>
@@ -61,8 +61,13 @@
     font-weight: bold;
   }
 
+  .create-card-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .create-card {
-    margin: 0 3% 0 0%;
     width: 4rem;
     height: 4rem;
     background-color: #65C6DC;
@@ -74,8 +79,6 @@
     cursor: pointer;
     border: 0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin-top: 30%;
-    margin-left: 98%;
   }
 
   .create-card i {
@@ -195,6 +198,10 @@
     margin-top: 4%;
     color: grey;
     font-size: 150%;
+  }
+
+  #card-row {
+    overflow-y: scroll;
   }
 
 </style>

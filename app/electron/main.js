@@ -41,6 +41,10 @@ const createWindow = () => {
   ipcMain.handle("get_appdata", async e => {
     return app.getPath("appData")
   })
+
+  ipcMain.handle("notify", (e, title, message) => {
+    dialog.showErrorBox(title, message);
+  })
 }
 
 app.whenReady().then(() => {
