@@ -79,10 +79,13 @@
       }
 
       curr_flashcard++;
-      
+
+      if(curr_flashcard + 1 === studyset.length) {
+        next_card_btn.textContent = "Done"
+      }
+
       display_flashcard(studyset[curr_flashcard])
       set_progess(curr_flashcard + 1)
-      next_card_btn.textContent = "Done"
     }
 
     display_flashcard(studyset[curr_flashcard])
