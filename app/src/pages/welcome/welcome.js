@@ -1,7 +1,8 @@
 (function() {
   const create_flashcard_btn = document.getElementById("create-flashcard-btn")
   const my_library_btn = document.getElementById("my-library-btn")
-  const flashcard_el = document.getElementById("flashcard")
+  const flashcard_front = document.getElementById("flashcard-front")
+  const flashcard_back = document.getElementById("flashcard-back")
   const next_card_btn = document.getElementById("next-card-btn")
   const progress_text = document.getElementById("progress-text")
   const progress_bar = document.getElementById("progress-bar")
@@ -27,8 +28,11 @@
   }
 
   function clear_flashcard() {
-    for(let i = flashcard_el.children.length - 1; i >= 0; i--) {
-      flashcard_el.children[i].remove()
+    for(let i = flashcard_front.children.length - 1; i >= 0; i--) {
+      flashcard_front.children[i].remove()
+    }
+    for(let i = flashcard_back.children.length - 1; i >= 0; i--) {
+      flashcard_back.children[i].remove()
     }
   }
 
@@ -45,23 +49,8 @@
     let definition_el = document.createElement("p")
     definition_el.textContent = definition;
 
-    let flipped_toggle = false;
-
-    function flip_flashcard() {
-      clear_flashcard()
-
-      flipped_toggle = !flipped_toggle;
-      
-      if(flipped_toggle) {
-        flashcard_el.appendChild(definition_el)
-      } else {
-        flashcard_el.appendChild(term_el)
-      }
-
-    }
-
-    flashcard_el.appendChild(term_el)
-    flashcard_el.onclick = flip_flashcard
+    flashcard_back.appendChild(definition_el);
+    flashcard_front.appendChild(term_el);
   }
 
   function set_progess(prog) {

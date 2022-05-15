@@ -29,10 +29,10 @@ let flashcards = {
       "definition": "i ain't telling you"
     }
   ],
-  "Where to find crack dealer": [
+  "Where to find peace": [
     {
-      "term": "school",
-      "definition": "jones college prep"
+      "term": "peace",
+      "definition": "can be found by sleeping"
     }
   ],
 }
@@ -86,7 +86,6 @@ function load_library() {
   if(!fs.existsSync(appdata)) fs.mkdirSync(appdata)
   if(!fs.existsSync(flashcards_loc)) fs.writeFileSync(flashcards_loc, "")
 
-  // load_welcome()
-  load_library()
+  load_welcome()
 })();
 
