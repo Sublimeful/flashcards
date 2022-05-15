@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron')
+const { ipcMain, dialog } = require("electron");
 const path = require("path")
 
 const createWindow = () => {
@@ -15,6 +16,20 @@ const createWindow = () => {
   })
 
   win.loadFile(path.join(__dirname, "..", "src", "index.html"))
+
+  ipcMain.handle("import_flashcards", (e, default_path) => {
+    dialog.showOpenDialog({
+      title: "Import Cards",
+      defaultPath: default_path,
+      properties: ['openFile'],
+      filters: [{
+        name: 'Flashcards file',
+        extensions: ['cards']
+      }]
+    }).then(res => {
+      win.webContents.send("import_flashcards", res);
+    })
+  })
 }
 
 app.whenReady().then(() => {

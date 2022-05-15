@@ -6,8 +6,8 @@
   <div class="top">
     <input type = "text" placeholder = "Enter a title">
     <h2>OR</h2>
-    <div class="create-flashcard">
-      <div id="create-flashcard-btn" class="container">
+    <div id="import-flashcards-btn" class="import-flashcards">
+      <div class="container">
         <div class="btn-cosmetic">
           <i class="fa-solid fa-plus"></i>
         </div>
@@ -37,7 +37,7 @@
     </button>
   </div>
 </div>
-
+<script src="pages/flashcards/flashcards.js"></script>
 <style>
   .create {
     display: flex;
@@ -123,7 +123,7 @@
     content: "";
     display: block;
     margin-left: 10%;
-    width: 50%; 
+    width: 50%;
     border-bottom: 5px solid white;
     border-radius: 10px;
   }
@@ -138,25 +138,25 @@
     height: 85%;
   }
 
-  .create-flashcard {
+  .import-flashcards {
     margin-left: 25%;
     width: 15%;
     margin-top: 2%;
     height: 70%;
   }
 
-  .create-flashcard .container {
+  .import-flashcards .container {
     cursor: pointer;
     filter: drop-shadow(5px 5px 5px #808080);
   }
 
-  .create-flashcard h1 {
+  .import-flashcards h1 {
     color: white;
     font-size: 100%;
     margin: 0 !important;
   }
 
-  .create-flashcard .btn-cosmetic {
+  .import-flashcards .btn-cosmetic {
     margin: 0 3% 0 0%;
     width: 2.5rem;
     height: 2.5rem;
@@ -168,7 +168,7 @@
     color: white;
   }
 
-  .create-flashcard .btn-cosmetic i {
+  .import-flashcards .btn-cosmetic i {
     transform: scale(150%)
   }
 
