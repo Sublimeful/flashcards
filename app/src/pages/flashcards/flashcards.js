@@ -3,7 +3,6 @@
   const create_btn = document.getElementById("create-btn");
   const create_card_btn = document.getElementById("create-card-btn");
   const card_number_el = document.getElementById("card-number");
-  const title_input = document.getElementById("title-input");
   const term_input = document.getElementById("term-input");
   const definition_input = document.getElementById("definition-input");
   const back_btn = document.querySelector(".topnav img");
@@ -13,6 +12,8 @@
   let edit_mode = false;
 
   if(to_edit != null) {
+    const title_input = document.getElementById("title-input");
+
     title_input.value = to_edit["category"];
     card_entries = to_edit["cards"];
 
@@ -112,6 +113,7 @@
         card_list.push(card)
       }
 
+      card_entries = card_list;
       flashcards[title_input.value] = card_list;
     }
 
@@ -122,31 +124,35 @@
   }
 
   function create_study_set() {
+    const title_input = document.getElementById("title-input");
+
     let category = title_input.value.trim()
     if(category === '') {
       ipcRenderer.invoke("notify", "Please add a title!", "");
       return;
     }
-    
-    card_entries = []
 
-    for(let card_el of card_row.querySelectorAll(".card")) {
-      let term_input = card_el.querySelector(".term-input")
-      let definition_input = card_el.querySelector(".definition-input")
+    if(!edit_mode) {
+      card_entries = []
+
+      for(let card_el of card_row.querySelectorAll(".card")) {
+        let term_input = card_el.querySelector(".term-input")
+        let definition_input = card_el.querySelector(".definition-input")
 
 
-      let term = term_input.value.trim()
-      let definition = definition_input.value.trim()
+        let term = term_input.value.trim()
+        let definition = definition_input.value.trim()
 
-      if(term === '' || definition === '') continue;
+        if(term === '' || definition === '') continue;
 
-      let card = {
-        "term": term,
-        "definition": definition
+        let card = {
+          "term": term,
+          "definition": definition
+        }
+
+        card_entries.push(card)
+        add_flashcard(card, category)
       }
-
-      card_entries.push(card)
-      add_flashcard(card, category)
     }
     
     ipcRenderer.invoke("export_flashcards", home_directory);
@@ -219,6 +225,8 @@
   })
 
   ipcRenderer.on("export_flashcards", (event, data) => {
+    const title_input = document.getElementById("title-input");
+
     const canceled = data.canceled;
     const path = data.filePath;
 
@@ -226,6 +234,8 @@
 
     // If title is empty
     let category = title_input.value.trim();
+    console.log(category)
+    console.log(title_input)
     if(category === '') {
       ipcRenderer.invoke("notify", "Please add a title!", "");
       return;

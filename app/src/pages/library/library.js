@@ -51,7 +51,7 @@
     card_btn.onclick = () => start_studyset(category)
     delete_btn.onclick = () => {
       delete flashcards[category]
-      cards_div.remove()
+      card_div.remove()
     }
     edit_btn.onclick = e => {
       to_edit = {
@@ -66,7 +66,7 @@
 	}
 
 	function get_search_input() {
-		let card_list = document.getElementsByClassName("card");
+		let card_list = document.getElementsByClassName("card-div");
 
 		for (let card of card_list) {
 			if (!card.innerText.toLowerCase().includes(search_input.value.toLowerCase())) {

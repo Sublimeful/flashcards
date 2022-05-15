@@ -67,6 +67,7 @@
 
     let curr_flashcard = 0;
     set_progess(1)
+    next_card_btn.textContent = "Next Card"
 
     if(studyset.length === 1) {
       next_card_btn.textContent = "Done"
