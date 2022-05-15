@@ -10,6 +10,7 @@ let pages = path.resolve(path.join(__dirname, "pages"))
 let welcome_page = path.resolve(path.join(pages, "welcome"))
 let flashcards_page = path.resolve(path.join(pages, "flashcards"))
 let library_page = path.resolve(path.join(pages, "library"))
+let to_edit = null
 
 let flashcards = {
   "How to win hackathon": [
@@ -64,10 +65,13 @@ function load_page(page_path) {
 }
 
 function load_welcome() {
+  console.trace()
+  console.log("welcome")
   load_page(path.resolve(path.join(welcome_page, "welcome.html")))
 }
 
 function load_flashcards() {
+  console.log("flashcards")
   load_page(path.resolve(path.join(flashcards_page, "flashcards.html")))
 }
 
@@ -83,6 +87,6 @@ function load_library() {
   if(!fs.existsSync(flashcards_loc)) fs.writeFileSync(flashcards_loc, "")
 
   // load_welcome()
-  load_flashcards()
+  load_library()
 })();
 
